@@ -7,7 +7,7 @@ class Chart():
         self.history_map = {}
         self.date_list = []
     
-    def draw_kline(self, days, history):        
+    def draw_kline(self, days, history, path):        
         self.date_list = days
         candies = []
         x = []
@@ -42,7 +42,7 @@ class Chart():
                 i = 5
                 for h in hs:
                     candy.append("")
-                    candy[i]= "{} {} {} {}@{}".format(h["action"], h["symbol"], h["type"], h["quantity"], h["price"])
+                    candy[i]= "{} {} {}@{}".format(h["action"], h["description"], h["quantity"], h["price"])
                     i += 1
 
                        
@@ -61,13 +61,15 @@ class Chart():
             candies,
             is_datazoom_show=True,
             tooltip_formatter=_tooltip_formatter,
+            tooltip_font_size=14,
+            
         )
         
-        overlap = Overlap()
+        overlap = Overlap(width=1800, height=900)
         overlap.add(kline)
         overlap.add(sc)
     
-        overlap.render()
+        overlap.render(path)
         
     def _add_scatter(self, sc, points, name):      
         x_lst = [v[0] for v in points]

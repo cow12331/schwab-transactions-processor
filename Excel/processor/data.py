@@ -9,7 +9,13 @@ class DataStore():
             self.download_data_by_stock(path, symbol, override)
 
     def download_data_by_stock(self, path, symbol, override=False):
-        url = "https://api.iextrading.com/1.0/stock/{}/chart/5y".format(symbol)
+        api_symbol = symbol
+        if api_symbol == "SPXW":
+            api_symbol = "SPY"
+        if api_symbol == "RUTW" or api_symbol =="RUT":
+            api_symbol = "IWM"
+        
+        url = "https://api.iextrading.com/1.0/stock/{}/chart/5y".format(api_symbol)
         try:
             r = requests.get(url)
             rj = r.json()

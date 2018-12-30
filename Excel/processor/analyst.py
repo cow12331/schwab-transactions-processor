@@ -36,6 +36,8 @@ def create_transaction_json(path, transactions, override=False):
             item["description"] = transaction.description
             item["mark"] = transaction.mark.value
             item["real_price"] = transaction.real_price
+            if transaction.real_price and (transaction.symbol == "SPXW" or transaction.symbol == "RUT" or transaction.symbol == "RUTW"):
+                item["real_price"] = float(transaction.real_price) / 10.0
             items.append(item)
             
         if not os.path.exists(file_path) or override:

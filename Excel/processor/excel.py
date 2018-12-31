@@ -18,6 +18,7 @@ class ExcelProcessor:
                     transcation.description = self.get_description(row)
                     transcation.action = Action(row[1])
                     
+                    #TODO: to use find_mark
                     if self.is_option(row):
                         if "PUT" in transcation.description:
                             transcation.type = "PUT"
@@ -50,7 +51,7 @@ class ExcelProcessor:
                     #transcation.output()
                     result.append(transcation)
                 else:
-                    print "unknow row: {}".format(row)
+                    print "unknown row: {}".format(row)
         return result
             
     def get_date(self, row):

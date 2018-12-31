@@ -5,10 +5,8 @@ from action import Attitude
 class Chart():
     def __init__(self):
         self.history_map = {}
-        self.date_list = []
     
     def draw_kline(self, days, history, path):        
-        self.date_list = days
         candies = []
         x = []
         sc = Scatter() 
@@ -42,7 +40,7 @@ class Chart():
                 i = 5
                 for h in hs:
                     candy.append("")
-                    candy[i]= "{} {} {}@{}".format(h["action"], h["description"], h["quantity"], h["price"])
+                    candy[i]= "{} {} {}@{}@{}".format(h["action"], h["description"], h["quantity"], h["price"], h["date"])
                     i += 1
 
                        
